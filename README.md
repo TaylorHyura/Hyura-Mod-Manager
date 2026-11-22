@@ -62,8 +62,9 @@ this repository's Releases page before running it.
 - A writable folder for the app and its data
 - Optional: a Nexus Mods API key for metadata and update checks. Manual installation
   works without one.
-- If a release note lists the .NET 10 Desktop Runtime as a requirement, install it
-  before launching HMM.
+- If a release note lists the .NET 10 Desktop Runtime as a requirement, install the
+  [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0) before
+  launching HMM.
 
 ## First run
 
@@ -108,7 +109,7 @@ update. If a game is missing, see the
 
 Before HMM overwrites a game file for the first time, it moves the original to
 `BackupFiles\<game-id>` and records its SHA-256 hash. Disabling or uninstalling the mod
-restores the backed-up file.
+restores the backed-up file once no other enabled mod needs it.
 
 Keep `BackupFiles` until you are happy with your setup. If something goes wrong, disable
 the mod in HMM first; manually deleting backups can make the original game files
@@ -138,8 +139,9 @@ Everything is relative to the folder containing `HyuraModManager.exe`:
   required loader is installed under **Dependencies**.
 - **A game is not in Browse.** Check the catalog first. If it is missing, request or
   add it in [HMM-Supported-Games](https://github.com/TaylorHyura/HMM-Supported-Games).
-- **A mod does not appear correctly in HMM.** The archive may use a layout HMM does not
-  recognize. Try a Hyura package or ask the mod author for the intended install path.
+- **A mod does not appear correctly in HMM.** Check that the archive uses a supported
+  format and that its folders match the game's install layout. A Hyura package with a
+  `hyuramod.json` manifest is the most reliable option.
 - **HMM does not start.** Extract the whole release archive, install the .NET Desktop
   Runtime if the release requires it, and check whether antivirus software quarantined
   a file.
