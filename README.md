@@ -43,8 +43,9 @@ this repository's Releases page before running it.
   Each mod gets its own folder under `InstalledMods`.
 - **Engine-aware detection** - Mods are classified as Fluffy, Plugin, Pak, LogicPak,
   Lua, Overwrite or Hyura, and their files are placed where that engine loads them.
-- **Hyura packages** - Archives with a `hyuramod.json` manifest install the same way on
-  any supported engine, with components that mirror the game's folder layout.
+- **Hyura packages** - HMM's native format. Archives with a `hyuramod.json` manifest
+  install the same way on any engine, with components that mirror the game's folder
+  layout. See [Hyura mod format](#hyura-mod-format).
 - **Deployment control** - Enable or disable a whole mod, an individual component, or a
   single file. Drag rows to decide which mod wins a file conflict.
 - **Backups and restore** - Original game files are moved to `BackupFiles` the first time
@@ -113,10 +114,79 @@ update. If a game is missing, see the
 
 | Format / engine | What HMM understands |
 | --- | --- |
-| **Hyura (any engine)** | Packages with a `hyuramod.json` manifest whose component folders mirror the game's install layout. |
+| **[Hyura (any engine)](#hyura-mod-format)** | Packages with a `hyuramod.json` manifest whose component folders mirror the game's install layout. |
 | **RE Engine** | REFramework plugin DLLs, Fluffy-style `modinfo.ini` packages (including addons), and PAK invalidation for `natives` files. |
 | **MT Framework** | `nativePC`-style archives and overwrite mods. |
 | **Unreal Engine** | `.pak` mods, LogicMods, loose Lua and DLL mods (UE4SS-style), and overwrite/loader mods. |
+
+## Hyura mod format
+
+Hyura is HMM's native, engine-independent mod format. A Hyura package is a `.zip`,
+`.rar` or `.7z` with a `hyuramod.json` manifest, ideally at the archive root. HMM
+installs the manifest's components instead of detecting an engine layout, so the same
+package works on any engine as long as its component folders mirror the game's install
+directory.
+
+```json
+{
+  "Name": "Example Mod",
+  "Description": "Short description shown in HMM.",
+  "Version": "1.2.0",
+  "Author": "YourName",
+  "PreviewImage": "preview.png",
+  "Components": [
+    { "Name": "Main files", "Type": "Main", "Path": "main" },
+    { "Name": "Optional addon", "Type": "Addon", "Path": "addon" }
+  ]
+}
+```
+
+```text
+ExampleMod.zip
+├─ hyuramod.json
+├─ preview.png
+├─ main\natives\...      - deployed as-is
+└─ addon\natives\...
+```
+
+Top-level fields:
+
+| Field | Required | Behaviour |
+| --- | --- | --- |
+| `Name` | Yes | Mod name shown in HMM and used for the installed folder. |
+| `Description` | No | Shown in the details panel. |
+| `Version` | No | Defaults to the install date (`dd.MM.yy`); included in the folder name. |
+| `Author` | No | Defaults to `Unknown`. |
+| `PreviewImage` | No | Path relative to the archive root; copied and resized into the mod's cover. |
+| `Components` | Yes | Each entry becomes a component; a manifest with none installs no files. |
+
+Component fields:
+
+| Field | Required | Behaviour |
+| --- | --- | --- |
+| `Path` | Yes | Folder inside the archive, relative to its root. Entries with an empty path are skipped. |
+| `Name` | Recommended | Component label; falls back to the mod name. |
+| `Type` | No | `Main` by default. `Addon` (any casing) installs the component disabled. |
+| `OrderingPath` | No | Subfolder whose files follow the mod's load order. See below. |
+| `OrderingType` | No | How `OrderingPath` is applied. `File` (default) prefixes each file with `<priority>_<id>_`; `Folder` moves the files into the generated folder instead. |
+| `Description` | No | Shown in the component manager's details panel. |
+| `PreviewImage` | No | Removed from the deployed files; not shown yet. |
+
+What HMM does with the files:
+
+- Everything under `Path` is moved as-is, keeping its folder structure, so it must
+  match the game's install directory.
+- With `OrderingPath` set, files under it follow the mod's priority: `OrderingType:
+  "Folder"` moves them into a generated `<priority>_<id>_<name>_<version>` folder,
+  and `File` (the default) prefixes each file with `<priority>_<id>_`.
+- Documentation is discarded: files matching `readme`, `read-me`, `read_me`, `credits`,
+  `changelog`, `troubleshooting` or `.url`. `.txt` files are kept only when the name
+  contains `config`.
+- `hyuramod.json` and the declared preview image are not deployed.
+- Components that end up with no files are dropped.
+
+HMM searches the whole archive for `hyuramod.json` and uses the first one it finds, so
+keep exactly one, at the archive root.
 
 ## Backups and safety
 
