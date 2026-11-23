@@ -8,7 +8,7 @@ original game files, and restores them when you disable or uninstall a mod. It
 understands Fluffy `modinfo.ini` packages, REFramework plugins, Unreal `.pak` and
 LogicMods files, loose Lua/DLL mods, plain overwrite mods, and Hyura packages.
 
-![Hyura Mod Manager managing mods for Resident Evil 0](docs/mod-manager.png)
+![Hyura Mod Manager managing mods for Spore: Galactic Adventures](docs/mod-manager.png)
 
 <p align="center">
   <a href="https://github.com/TaylorHyura/Hyura-Mod-Manager/releases">
@@ -55,6 +55,19 @@ this repository's Releases page before running it.
   archive without losing the mod's position.
 - **Themes and accessibility** - Light, Dark, Graphite Dark and Auto themes, keyboard
   focus styles, and accessible control names.
+
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/my-games.png" alt="My Games"><br><sub><b>My Games</b> &mdash; your game library</sub></td>
+    <td width="50%"><img src="docs/browse.png" alt="Browse"><br><sub><b>Browse</b> &mdash; official and community catalogs</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/dependencies.png" alt="Dependencies"><br><sub><b>Dependencies</b> &mdash; loaders such as REFramework or UE4SS</sub></td>
+    <td width="50%"><img src="docs/settings.png" alt="Settings"><br><sub><b>Settings</b> &mdash; Nexus API key, theme and game paths</sub></td>
+  </tr>
+</table>
 
 ## Requirements
 
