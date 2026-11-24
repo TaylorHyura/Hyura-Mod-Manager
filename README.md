@@ -21,16 +21,6 @@ LogicMods files, loose Lua/DLL mods, plain overwrite mods, and Hyura packages.
 > will be `1.0.0`; until then, keep your backups and expect changes. No public build
 > has been published yet.
 
-## Project repositories
-
-HMM is one project split across three repositories:
-
-| Repository | Purpose |
-| --- | --- |
-| This repository (`Hyura-Mod-Manager`) | Public releases, downloads and bug reports |
-| [HMM-Supported-Games](https://github.com/TaylorHyura/HMM-Supported-Games) | Game catalog read by the app; community game support goes here |
-| `HyuraModManager` | Application source, private during pre-release |
-
 ## Download
 
 Public builds will be published on the
