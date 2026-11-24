@@ -1,7 +1,8 @@
 # Hyura Mod Manager (HMM)
 
 A desktop mod manager for Windows that installs, deploys and organizes mods for games
-built on **RE Engine**, **MT Framework** and **Unreal Engine**.
+built on **RE Engine**, **MT Framework** and **Unreal Engine**, plus any other engine
+through Hyura packages.
 
 HMM keeps every mod in its own folder, deploys only what you enable, backs up the
 original game files, and restores them when you disable or uninstall a mod. It
@@ -12,17 +13,31 @@ LogicMods files, loose Lua/DLL mods, plain overwrite mods, and Hyura packages.
 
 <p align="center">
   <a href="https://github.com/TaylorHyura/Hyura-Mod-Manager/releases">
-    <img src="https://img.shields.io/badge/Download-Latest%20Release-2ea44f?style=for-the-badge" alt="Download the latest release">
+    <img src="https://img.shields.io/badge/Releases-View%20on%20GitHub-2ea44f?style=for-the-badge" alt="View HMM releases">
   </a>
 </p>
 
 > **Status: pre-release.** HMM is under active development. The first stable release
-> will be `1.0.0`; until then, keep your backups and expect changes.
+> will be `1.0.0`; until then, keep your backups and expect changes. No public build
+> has been published yet.
+
+## Project repositories
+
+HMM is one project split across three repositories:
+
+| Repository | Purpose |
+| --- | --- |
+| This repository (`Hyura-Mod-Manager`) | Public releases, downloads and bug reports |
+| [HMM-Supported-Games](https://github.com/TaylorHyura/HMM-Supported-Games) | Game catalog read by the app; community game support goes here |
+| `HyuraModManager` | Application source, private during pre-release |
 
 ## Download
 
-Builds are published on the
-[Releases](https://github.com/TaylorHyura/Hyura-Mod-Manager/releases) page.
+Public builds will be published on the
+[Releases](https://github.com/TaylorHyura/Hyura-Mod-Manager/releases) page. The first
+release will be `1.0.0`; there is no downloadable build yet.
+
+Once a build is published:
 
 1. Download the latest release archive.
 2. Extract it to a writable folder, such as `C:\Games\HMM`. Do not run it from inside
@@ -43,17 +58,25 @@ this repository's Releases page before running it.
   Each mod gets its own folder under `InstalledMods`.
 - **Engine-aware detection** - Mods are classified as Fluffy, Plugin, Pak, LogicPak,
   Lua, Overwrite or Hyura, and their files are placed where that engine loads them.
+- **Metadata** - Names, versions, authors, descriptions and covers come from
+  `modinfo.ini`, the Nexus file name, or the Nexus API when a key is set.
 - **Hyura packages** - HMM's native format. Archives with a `hyuramod.json` manifest
   install the same way on any engine, with components that mirror the game's folder
   layout. See [Hyura mod format](#hyura-mod-format).
+- **Component previews and gallery** - An RE Engine component shows the screenshot
+  declared in its `modinfo.ini`; click a cover to browse the cover and every component
+  preview in a pop-up gallery.
 - **Deployment control** - Enable or disable a whole mod, an individual component, or a
   single file. Drag rows to decide which mod wins a file conflict.
 - **Backups and restore** - Original game files are moved to `BackupFiles` the first time
   a mod overwrites them, and restored when the mod is disabled or removed.
+- **RE Engine PAK support** - Reads and rewrites PAK entry tables so loose mod files
+  take precedence over archived ones, with the original entries backed up.
 - **Dependencies** - Per-game loaders such as REFramework or UE4SS, with one-click
   download and installation.
 - **Updates and reinstall** - Check installed mods against Nexus and update from a new
-  archive without losing the mod's position.
+  archive without losing the mod's position, or reinstall from the file it was installed
+  from.
 - **Themes and accessibility** - Light, Dark, Graphite Dark and Auto themes, keyboard
   focus styles, and accessible control names.
 
@@ -252,12 +275,16 @@ Do not post API keys, passwords, or personal file paths in an issue.
 
 ## Source and contributions
 
-The application source is not public at this time. This repository is used for public
-releases and issue tracking.
+The application source is not public at this time. This repository holds releases,
+public documentation and issue tracking. Documentation fixes are welcome as issues or
+pull requests; see [CONTRIBUTING.md](CONTRIBUTING.md) for the issue and documentation
+guidelines.
 
 The best way to contribute right now is to improve game support in
 [HMM-Supported-Games](https://github.com/TaylorHyura/HMM-Supported-Games). New catalog
-entries and corrections are reviewed before they are merged.
+entries and corrections are reviewed before they are merged; read the
+[catalog contribution guide](https://github.com/TaylorHyura/HMM-Supported-Games/blob/main/CONTRIBUTING.md)
+first.
 
 ## Third-party
 
