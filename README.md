@@ -18,16 +18,14 @@ LogicMods files, loose Lua/DLL mods, plain overwrite mods, and Hyura packages.
 </p>
 
 > **Status: pre-release.** HMM is under active development. The first stable release
-> will be `1.0.0`; until then, keep your backups and expect changes. No public build
-> has been published yet.
+> will be `1.0.0`; until then, keep your backups and expect changes. Pre-release builds
+> are published on the Releases page.
 
 ## Download
 
-Public builds will be published on the
-[Releases](https://github.com/TaylorHyura/Hyura-Mod-Manager/releases) page. The first
-release will be `1.0.0`; there is no downloadable build yet.
-
-Once a build is published:
+Download the latest pre-release from the
+[Releases](https://github.com/TaylorHyura/Hyura-Mod-Manager/releases) page. The archive
+is portable and self-contained: no installer and no separate .NET install are needed.
 
 1. Download the latest release archive.
 2. Extract it to a writable folder, such as `C:\Games\HMM`. Do not run it from inside
