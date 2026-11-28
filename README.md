@@ -77,7 +77,7 @@ this repository's Releases page before running it.
   </tr>
   <tr>
     <td width="50%"><img src="docs/dependencies.png" alt="Dependencies"><br><sub><b>Dependencies</b> &mdash; loaders such as REFramework or UE4SS</sub></td>
-    <td width="50%"><img src="docs/settings.png" alt="Settings"><br><sub><b>Settings</b> &mdash; Nexus API key, theme and game paths</sub></td>
+    <td width="50%"><img src="docs/settings.png" alt="Settings"><br><sub><b>Settings</b> &mdash; Nexus API key, theme and Nexus links</sub></td>
   </tr>
 </table>
 
